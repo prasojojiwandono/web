@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ini home
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<p><h2>Ini {{judul}}</h2></p>
+	<p>sekarang jam {{waktu}}</p>
+	<br>
+	{# <button type="button" class="btn btn-link" href='/produk/'>Link ke produk</button> #}
+	{# <a href="/produk/"><h3>produk</h3></a> #}
+	<a class="btn btn-primary" href="{% url "produk:home" %}" role="button">Link ke produk</a>
+	<br>
+	<a class="btn btn-primary" href="{% url "karyawan:home" %}" role="button">Link ke karyawan</a>
+</div>
+{% endblock body %}

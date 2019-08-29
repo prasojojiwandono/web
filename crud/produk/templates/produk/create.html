@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ini {{judul}}
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<p><h2>Ini {{judul}}</h2></p>
+	<br>
+	<a class="btn btn-primary" href="{% url 'produk:home' %}" 
+	role="button">Link ke produk</a>
+
+	<br>
+
+	<form method="POST" >
+		{% csrf_token %}
+		
+			{{produk_form.as_p}}
+		
+		<button type="submit">kirim</button>
+	</form>
+	
+	
+</div>
+{% endblock body %}

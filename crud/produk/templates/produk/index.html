@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ini {{judul}}
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<p><h2>Ini {{judul}}</h2></p>
+	<br>
+	<a class="btn btn-primary" href="{% url 'home' %}" 
+	role="button">Link ke home</a>
+
+	<a class="btn btn-warning offset-9" href="{% url 'produk:create' %}" role="button">tambah produk</a>
+
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				  <th scope="col">No</th>
+			      <th scope="col">Produk</th>
+			      <th scope="col">Deskripsi</th>
+			      <th scope="col">Tipe Product</th>
+			      <th scope="col">action</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			{% for i in body %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{i.NamaProduct}}</td>
+				<td>{{i.DeskripsiProduct}}</td>
+				<td>{{i.Tipe}}</td>
+				<td>
+					<a class="btn btn-danger btn-sm " role="button" href="{% url 'produk:delete' i.id %}"> 
+					<span class="fas fa-trash" aria-hidden="true"></span> </a>
+					<a class="btn btn-warning btn-sm " role="button" href="{% url 'produk:update' i.id %}"> 
+					<span class="fas fa-pen" aria-hidden="true"></span> </a>
+					
+				</td>
+			</tr>
+			{% endfor %}
+
+		</tbody>
+	</table>
+	
+</div>
+{% endblock body %}

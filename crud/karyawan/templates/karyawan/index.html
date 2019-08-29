@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ini {{judul}}
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<p><h2>Ini {{judul}}</h2></p>
+	<br>
+	<a class="btn btn-primary" href="{% url 'home' %}" role="button">Link ke home</a>
+	<a class="btn btn-warning offset-9" href="{% url 'karyawan:create' %}" role="button">tambah karyawan</a>
+	<br>
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Nama</th>
+				<th>No HP</th>
+				<th>tgl lahir</th>
+				<th>email</th>
+				<th>Gender</th>
+				<th>action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in isi %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ i.Nama }}</td>
+				<td>{{ i.Telpon }}</td>
+				<td>{{ i.Tgl_lahir }}</td>
+				<td>{{ i.Email }}</td>
+
+				{% if i.Gender == 'P' %}
+				<td>Pria</td>
+				{% else %}
+				<td>Wanita</td>
+				{% endif %}
+				
+				<td>
+				<a class="btn btn-danger btn-sm " role="button" href="{% url 'karyawan:delete' i.id %}"> 
+					<span class="fas fa-trash" aria-hidden="true"></span> </a>
+					<a class="btn btn-warning btn-sm " role="button" href="{% url 'karyawan:update' i.id %}"> 
+					<span class="fas fa-pen" aria-hidden="true"></span> </a>
+				</td>
+			</tr>
+			{% endfor %}
+			
+		</tbody>
+	</table>
+</div>
+{% endblock body %}
